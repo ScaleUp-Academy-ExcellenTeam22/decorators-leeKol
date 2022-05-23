@@ -3,16 +3,16 @@ from typing import Any, Callable
 
 
 @decorator.decorator
-def execute_twice(func: Callable, *args: Any, **kwargs: Any) -> tuple:
+def execute_twice(func: Callable, *args: Any, **kwargs: Any) -> None:
     """
     The function is a decorator that gets a function and parameters for it, executes the function it wraps twice,
     and returns a tuple containing the two return values of the function.
     :param func: the wrapped function to be executed twice.
     :param args: The parameters that the wrapped function gets. It does not use it.
     :param kwargs: The parameters that the wrapped function gets. It does not use it.
-    :return: A tuple containing the two return values of the function.
     """
-    return tuple(func(*args, **kwargs) for foo in range(2))
+    for foo in range(2):
+        print(func(*args, **kwargs))
 
 
 @execute_twice
@@ -26,4 +26,4 @@ def times2(num: int) -> int:
 
 
 if __name__ == '__main__':
-    print(times2(3))
+    times2(3)
